@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateApi01sTable extends Migration
+class CreateProdutosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,14 @@ class CreateApi01sTable extends Migration
      */
     public function up()
     {
-        Schema::create('api01s', function (Blueprint $table) {
+        Schema::create('produtos', function (Blueprint $table) {
             $table->increments('id');
             $table->string('descricao');
             $table->decimal('preco',4,2);
             $table->string('cor');
             $table->double('peso',3,2);
+            $table->integer('categoria_id')->unsigned();
+            $table->foreign('categoria_id')->references('id')->on('categorias');
             $table->timestamps();
         });
     }
@@ -30,6 +32,6 @@ class CreateApi01sTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('api01s');
+        Schema::dropIfExists('produtos');
     }
 }
