@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Categoria;
+
 class CategoriaController extends Controller
 {
 
@@ -40,10 +42,13 @@ class CategoriaController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->all();
-        $categoria=categoria::create($data);
+        $data = $request->only(['nome']);
+        $produtos = $request['produtos'];
+
+        $categoria=Categoria::create($data);
 
         if($categoria){
+            $categoria->produto()->createMany($produtos);
              return response()->json(['data'=>$categoria,'status'=>true]);
         }else{
             return response()->json(['data'=>'Erro ao criar Categoria','status'=>false]);

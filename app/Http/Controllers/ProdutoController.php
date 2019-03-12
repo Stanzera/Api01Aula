@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\api01;
+use App\Produto;
 
 class ProdutoController extends Controller
 
@@ -23,7 +23,7 @@ class ProdutoController extends Controller
     public function index()
     {
         //Mostrar as informações salvas no banco de dados.
-        $produto=api01::all();
+        $produto=Produto::all();
         return response()->json(['data'=>$produto,'status'=>true]);
     }
 
@@ -47,7 +47,7 @@ class ProdutoController extends Controller
     {
         //Salvar informações no banco de dados.
         $data = $request->all();
-        $produto=api01::create($data);
+        $produto=Produto::create($data);
 
         if($produto){
              return response()->json(['data'=>$produto,'status'=>true]);
@@ -65,7 +65,7 @@ class ProdutoController extends Controller
     public function show($id)
     {
         //Pega determinada informação do banco com base no ID.
-        $produto=api01::find($id);
+        $produto=Produto::find($id);
 
         if($produto){
              return response()->json(['data'=>$produto,'status'=>true]);
@@ -96,7 +96,7 @@ class ProdutoController extends Controller
     {
         //
         $data=$request->all();
-        $produto=api01::find($id);
+        $produto=Produto::find($id);
 
         if($produto){
             $produto->update($data);
@@ -115,7 +115,7 @@ class ProdutoController extends Controller
     public function destroy($id)
     {
         //
-        $produto=api01::find($id);
+        $produto=Produto::find($id);
 
         if($produto){
             $produto->delete();

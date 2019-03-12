@@ -18,5 +18,5 @@ use Illuminate\Http\Request;
 });*/
 
 
-Route::resource('api01','ProdutoController');
-Route::resource('categoria','CategoriaController');
+Route::resource('Produto','ProdutoController');
+Route::resource('Categoria','CategoriaController');
